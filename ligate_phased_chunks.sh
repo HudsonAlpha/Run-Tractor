@@ -18,6 +18,7 @@ export TMPDIR=$(mktemp -d)
 trap "rm -rf $TMPDIR" EXIT
 
 module load cluster/shapeit/5.1.1
+module load htslib
 
 
 chr=$(sed -n ${SLURM_ARRAY_TASK_ID}p $1)
@@ -35,6 +36,9 @@ ls -1v ${phased_chunks_dir}/*_${chr}:*.bcf > ${chr}_files.txt
 
 ligate \
 	--input ${chr}_files.txt \
-	--output ${input_basename}_${chr}.bcf \
+	--output ${input_basename}_${chr}.phased.vcf \
 	--thread ${SLURM_JOB_CPUS_PER_NODE} \
 	--index
+
+bgzip --threads ${SLURM_JOB_CPUS_PER_NODE} ${input_basename}_${chr}.phased.vcf
+tabix -p vcf ${input_basename}_${chr}.phased.vcf.gz

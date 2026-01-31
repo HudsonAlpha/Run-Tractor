@@ -25,7 +25,7 @@ chr=$(sed -n ${SLURM_ARRAY_TASK_ID}p $1)
 echo ${chr}
 
 input_basename=$2
-outputs_dir=$(realpath shapeit5/outputs)
+ligation_dir=$(realpath phasing/ligation)
 
 
 mkdir -p local_ancestry
@@ -36,7 +36,7 @@ micromamba activate /cluster/home/jtaylor/micromamba/envs/rfmix2
 
 
 rfmix \
-	-f ${outputs_dir}/${input_basename}.phased.vcf.gz \
+	-f ${ligation_dir}/${input_basename}_${chr}.phased.vcf.gz \
 	-r /cluster/home/jtaylor/reference_files/1000G_hg38/ALL.${chr}.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz \
 	-m /cluster/home/jtaylor/scripts/Run_Tractor/resources/1000G_superpop_labels_amr_eur_afr.tsv \
 	-g /cluster/home/jtaylor/scripts/Run_Tractor/resources/${chr}.hg38.gmap.txt \
