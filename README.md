@@ -28,4 +28,3 @@ Make copies of the scripts and update paths and naming conventions in both. You 
   a.	/cluster/home/jtaylor/scripts/Run_Tractor/example_workflow_scripts/combine_Q.R
   b.	/cluster/home/jtaylor/scripts/Run_Tractor/example_workflow_scripts/plot_ancestry_proportions.R
 Just like the other scripts, make a copy and update paths/naming convention. Run combine Q first to create overall ancestry proportions (chromosome size aware). Then you can plot those results with the other script. You can use the r-env micromamba env for these two scripts as well.
-<img width="468" height="637" alt="image" src="https://github.com/user-attachments/assets/2ff97daf-ce31-4a82-aaf4-9989bec5b99e" />
